@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Quiz</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>    
+    <form method="get" action="/quizes/<%=quiz.id%>/answer">
+       <br>
+        Pregunta: <%= quiz.pregunta %><p>
+        <input type="text" name="respuesta" value="Respuesta" required />
+        <input type="submit" value="Enviar">
+    </form>
+    <a href="/quizes">Volver</a>
+  </body>
+</html>
