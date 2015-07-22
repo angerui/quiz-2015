@@ -6,10 +6,24 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>    
+   <form method="get" action="/quizes?">
+       <br>
+        Buscar:<p>
+        <input type="text" name="search" value="<%= filtro %>"/>
+        <input type="submit" value="Enviar">
+    </form>
+    <br>
+     <% if (quizes.length===0) { %>
+            No se hen encontrado resultados para la búsqueda<p>
+            <a href="/quizes">Volver</a>
+        <% } else {
+            if ((filtro!==undefined)&&(filtro!=='')) { %>
+                <a href="/quizes">Borrar Filtro</a><p>
+            <% } } %>        
     <table>
         <% var i; for (i=0; i < quizes.length; i++) { %>
             <tr><td><a href="quizes/<%= quizes[i].id %>"><%= quizes[i].pregunta %></a></td></tr>
         <% } %>
-    </table>
+    </table>    
   </body>
 </html>
