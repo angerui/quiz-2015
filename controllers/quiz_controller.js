@@ -22,7 +22,7 @@ exports.index = function(req,res,next) {
     }
     else {
         var buscar;
-        buscar = '%' + req.query.search + '%';       
+        buscar = '%' + req.query.search.replace(' ','%') + '%';       
         consulta = {where:["pregunta LIKE ?", buscar], order:"pregunta"};
     }
     
