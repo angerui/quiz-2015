@@ -7,11 +7,12 @@
   </head>
   <body>    
    <form method="get" action="/quizes?">
-       <br>
         Buscar:<p>
         <input type="text" name="search" value="<%= filtro %>"/>
         <input type="submit" value="Enviar">
     </form>
+    <br>
+    <a href="/quizes/new"><button type="button">Crear pregunta</button></a>
     <br>
      <% if (quizes.length===0) { %>
             No se hen encontrado resultados para la búsqueda<p>
@@ -22,9 +23,10 @@
             <% } } %>        
     <table>
         <% var i; for (i=0; i < quizes.length; i++) { %>
-            <tr><td><a href="quizes/<%= quizes[i].id %>"><%= quizes[i].pregunta %></a></td></tr>
+            <tr><td><a href="quizes/<%= quizes[i].id %>"><%= quizes[i].pregunta %></a>
+                    <a href="quizes/<%= quizes[i].id %>/edit"><button>Editar</button></a>
+            </td></tr>            
         <% } %>
     </table> <p>
-    <a href="/quizes/new"><button type="button">Crear pregunta</button></a>
   </body>
 </html>
