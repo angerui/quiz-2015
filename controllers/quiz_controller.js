@@ -41,11 +41,13 @@ exports.show = function(req,res) {
 //GET /quizes/:id/answer
 exports.answer = function(req,res) {
     var resultado = 'Incorrecto';
+    var color = 'red';
     
     if (req.query.respuesta === req.quiz.respuesta) {
         resultado = 'Correcto';
+        color = 'green';
     } 
-    res.render('quizes/answer', {quiz: req.quiz, respuesta: resultado, errors: []});
+    res.render('quizes/answer', {quiz: req.quiz, respuesta: resultado, color: color, errors: []});
 };
 
 //GET /quizes/new
