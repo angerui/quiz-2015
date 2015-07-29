@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Quiz</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>    
+   Añadir comentario a <%=pregunta%>:<p>
+    <form method="post" action="/quizes/<%=quizid%>/comments/">
+        <input type="text" id="comment" name="comment[texto]" value="" autofocus/><p>        
+        <button type="submit">Enviar</button>
+        <a href="/quizes/<%=quizid%>"><button type="button">Cancelar</button></a>
+    </form>
+  </body>
+</html>
