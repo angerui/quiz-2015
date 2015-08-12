@@ -29,6 +29,7 @@ app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(partials());
 
+
 //Helpers dinamicos
 app.use(function(req, res, next) {
     //guardar path en session.redir para después de login
@@ -41,6 +42,26 @@ app.use(function(req, res, next) {
     next();
 });
 
+//Control de sesión
+app.use(function(req, res, next) {
+    dosMinutos = 2*60*1000;
+    var ahora = new Date().getTime();
+    
+    if (req.session.user){                                     //si estamos en una sesión
+         if(!req.session.timestamp){                            //si no existe timestamp lo creamos
+             req.session.timestamp = new Date().getTime();
+         } else {
+             if ((ahora - req.session.timestamp) > dosMinutos){ //si han pasado más de dos minutos se hace logout
+                 console.info('sesion caducada');
+                 delete req.session.timestamp;                  
+                 res.redirect('/logout');  
+            } else {                                            //si no ha caducado la sesión se actualiza el timestamp
+                 req.session.timestamp = new Date().getTime();
+            }
+        }
+    }
+    next();
+});
 
 app.use('/', routes);
 
